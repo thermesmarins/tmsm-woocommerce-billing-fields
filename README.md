@@ -6,5 +6,11 @@ WooCommerce Billing Fields for Thermes Marins de Saint-Malo
 Features
 -----------
 
-* Adds checkout billing fields: birthday and title fields (optional, settings in "Checkout" admin page)
-* Sync user data to Mailchimp (using Mailchimp for WooCommerce plugin) with following merge tags: firstname as PRENOM, lastname as NOM, birthday as DDN, title as CIV
+* Adds checkout billing fields (optional, settings in "Checkout" admin page)
+    * title field
+    * birthday field (with mask mm/dd/yyyy)
+* Sync user data to Mailchimp (using Mailchimp for WooCommerce plugin) with following merge tags:
+    * title as CIV
+    * firstname as PRENOM
+    * lastname as NOM
+    * birthday as DDN
