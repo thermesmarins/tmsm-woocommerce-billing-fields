@@ -1,0 +1,73 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMSM WooCommerce Custom Admin\n"
+"POT-Creation-Date: 2018-04-09 10:44+0200\n"
+"PO-Revision-Date: 2014-10-24 21:08+0100\n"
+"Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
+"Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2;_x:1,2c;esc_attr__;esc_attr_e;"
+"esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../admin/class-tmsm-woocommerce-billing-fields-admin.php:116
+msgid "Checkout fields"
+msgstr ""
+
+#: ../admin/class-tmsm-woocommerce-billing-fields-admin.php:117
+msgid "Title field"
+msgstr ""
+
+#: ../admin/class-tmsm-woocommerce-billing-fields-admin.php:125
+msgid "Birthday field"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:147
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:295
+msgctxt "birthday date format conversion"
+msgid "Y-m-d"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:150
+msgctxt "birthday date format"
+msgid "m/d/Y"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:167
+msgctxt "honorific title"
+msgid "Ms"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:168
+msgctxt "honorific title"
+msgid "Mr"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:186
+msgctxt "honorific title label"
+msgid "Title"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:212
+msgctxt "birthday label"
+msgid "Birthday"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:214
+msgctxt "birthday placeholder"
+msgid "mm/dd/yyyy"
+msgstr ""
+
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:254
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:316
+msgctxt "birthday date format conversion"
+msgid "m/d/Y"
+msgstr ""

@@ -1,0 +1,22 @@
+/**
+ * Title field
+ */
+.woocommerce .woocommerce-checkout #customer_details .woocommerce-billing-fields p.form-row label,
+.woocommerce .woocommerce-checkout #customer_details .woocommerce-billing-fields p.form-row input
+{
+  display: inline-block;
+}
+
+.woocommerce-billing-fields .billing-title .input-radio,
+.woocommerce-address-fields .billing-title .input-radio
+{
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.woocommerce-billing-fields .billing-title .input-radio + label,
+.woocommerce-address-fields .billing-title .input-radio + label
+{
+  font-weight: normal;
+}
+
