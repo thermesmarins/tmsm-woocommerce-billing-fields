@@ -91,7 +91,7 @@ class Tmsm_Woocommerce_Billing_Fields_Admin {
 			array(
 				'title'         => __( 'Checkout fields', 'tmsm-woocommerce-billing-fields' ),
 				'desc'          => __( 'Title field', 'tmsm-woocommerce-billing-fields' ),
-				'id'            => 'tmsm_woocommerce_checkout_title',
+				'id'            => 'tmsm_woocommerce_billing_fields_title',
 				'default'       => 'no',
 				'type'          => 'checkbox',
 				'checkboxgroup' => 'start',
@@ -99,7 +99,7 @@ class Tmsm_Woocommerce_Billing_Fields_Admin {
 			),
 			array(
 				'desc'          => __( 'Birthday field', 'tmsm-woocommerce-billing-fields' ),
-				'id'            => 'tmsm_woocommerce_checkout_birthday',
+				'id'            => 'tmsm_woocommerce_billing_fields_birthday',
 				'default'       => 'no',
 				'type'          => 'checkbox',
 				'checkboxgroup' => 'end',
