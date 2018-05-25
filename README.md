@@ -14,3 +14,4 @@ Features
     * firstname as PRENOM
     * lastname as NOM
     * birthday as DDN
+* Tested up to WooCommerce 3.4
