@@ -1,4 +1,6 @@
 ### Unreleased ###
+* Display birthday field only on checkout page
+* Update translations
 
 ### 1.0.2: May 25th, 2018
 * Compatibility with WooCommerce 3.4
