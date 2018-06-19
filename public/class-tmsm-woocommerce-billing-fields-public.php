@@ -190,7 +190,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @return mixed
 	 */
 	function billing_fields_birthday( $fields ) {
-		if(self::checkout_birthday_field_is_enabled()){
+		if(self::checkout_birthday_field_is_enabled() && is_checkout()){
 			$new_fields['billing_birthday'] = array(
 				'type'        => 'text',
 				'label'       => _x( 'Birthday', 'birthday label', 'tmsm-woocommerce-billing-fields' ),
