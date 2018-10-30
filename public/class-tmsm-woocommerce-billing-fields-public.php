@@ -145,7 +145,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return mixed
 	 */
-	private static function billing_title_options(){
+	public static function billing_title_options(){
 
 		$options = array(
 			'2' => _x('Ms', 'honorific title', 'tmsm-woocommerce-billing-fields' ),
