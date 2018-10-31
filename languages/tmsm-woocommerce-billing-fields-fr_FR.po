@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: StormBringer Wordpress theme\n"
-"POT-Creation-Date: 2018-06-19 13:41+0200\n"
-"PO-Revision-Date: 2018-06-19 13:44+0200\n"
+"POT-Creation-Date: 2018-10-31 14:23+0100\n"
+"PO-Revision-Date: 2018-10-31 14:37+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language: fr\n"
@@ -26,22 +26,22 @@ msgid "Title field"
 msgstr "Champ civilité"
 
 #: ../admin/class-tmsm-woocommerce-billing-fields-admin.php:101
-msgid "Birthday field"
-msgstr "Champ anniversaire"
+msgid "Birthdate field"
+msgstr "Champ date de naissance"
 
 #: ../public/class-tmsm-woocommerce-billing-fields-public.php:81
-msgctxt "birthday date format"
+msgctxt "birthdate date format"
 msgid "mm/dd/yyyy"
-msgstr "dd/mm/aaaa"
+msgstr "jj/mm/aaaa"
 
 #: ../public/class-tmsm-woocommerce-billing-fields-public.php:131
-#: ../public/class-tmsm-woocommerce-billing-fields-public.php:279
-msgctxt "birthday date format conversion"
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:293
+msgctxt "birthdate date format conversion"
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 #: ../public/class-tmsm-woocommerce-billing-fields-public.php:134
-msgctxt "birthday date format"
+msgctxt "birthdate date format"
 msgid "m/d/Y"
 msgstr "d/m/Y"
 
@@ -61,20 +61,32 @@ msgid "Title"
 msgstr "Civilité"
 
 #: ../public/class-tmsm-woocommerce-billing-fields-public.php:196
-msgctxt "birthday label"
-msgid "Birthday"
-msgstr "Anniversaire"
+msgctxt "birthdate label"
+msgid "Date of birth"
+msgstr "Date de naissance"
 
 #: ../public/class-tmsm-woocommerce-billing-fields-public.php:198
-msgctxt "birthday placeholder"
+msgctxt "birthdate placeholder"
 msgid "mm/dd/yyyy"
 msgstr "jj/mm/aaaa"
 
-#: ../public/class-tmsm-woocommerce-billing-fields-public.php:238
-#: ../public/class-tmsm-woocommerce-billing-fields-public.php:300
-msgctxt "birthday date format conversion"
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:252
+#: ../public/class-tmsm-woocommerce-billing-fields-public.php:314
+msgctxt "birthdate date format conversion"
 msgid "m/d/Y"
 msgstr "d/m/Y"
+
+#~ msgctxt "birthday label"
+#~ msgid "Birthday"
+#~ msgstr "Anniversaire"
+
+#~ msgctxt "birthday placeholder"
+#~ msgid "mm/dd/yyyy"
+#~ msgstr "jj/mm/aaaa"
+
+#~ msgctxt "birthday date format conversion"
+#~ msgid "m/d/Y"
+#~ msgstr "d/m/Y"
 
 #~ msgid "Change your mailjet settings"
 #~ msgstr "Modifier vos réglages Mailjet"

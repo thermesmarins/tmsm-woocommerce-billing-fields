@@ -159,10 +159,10 @@ class Tmsm_Woocommerce_Billing_Fields {
 
 
 		// For WooCommerce 3.3
-		$this->loader->add_filter( 'woocommerce_get_settings_checkout', $plugin_admin, 'woocommerce_get_settings_checkout_birthdaytitle', 10, 2 );
+		$this->loader->add_filter( 'woocommerce_get_settings_checkout', $plugin_admin, 'woocommerce_get_settings_checkout_birthdatetitle', 10, 2 );
 
 		// For WooCommerce 3.4
-		$this->loader->add_filter( 'woocommerce_get_settings_advanced', $plugin_admin, 'woocommerce_get_settings_checkout_birthdaytitle', 10, 2 );
+		$this->loader->add_filter( 'woocommerce_get_settings_advanced', $plugin_admin, 'woocommerce_get_settings_checkout_birthdatetitle', 10, 2 );
 
 
 
@@ -184,12 +184,13 @@ class Tmsm_Woocommerce_Billing_Fields {
 
 		$this->loader->add_filter( 'mailchimp_sync_user_mergetags', $plugin_public, 'mailchimp_sync_user_mergetags', 10, 2 );
 		$this->loader->add_filter( 'woocommerce_checkout_get_value', $plugin_public, 'checkout_default_values_user', 10, 2 );
-		$this->loader->add_filter( 'woocommerce_checkout_get_value', $plugin_public, 'checkout_default_values_birthday', 20, 2 );
+		$this->loader->add_filter( 'woocommerce_checkout_get_value', $plugin_public, 'checkout_default_values_birthdate', 20, 2 );
+		$this->loader->add_filter( 'woocommerce_billing_fields', $plugin_public, 'billing_fields_birthdate', 10, 1 );
 		$this->loader->add_filter( 'woocommerce_billing_fields', $plugin_public, 'billing_fields_title', 10, 1 );
-		$this->loader->add_filter( 'woocommerce_billing_fields', $plugin_public, 'billing_fields_birthday', 20, 1 );
+		$this->loader->add_filter( 'woocommerce_checkout_fields', $plugin_public, 'reorder_fields', 100, 1 );
 		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'checkout_update_order_meta_title', 10, 2 );
-		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'checkout_update_order_meta_birthday', 20, 2 );
-		$this->loader->add_action( 'woocommerce_customer_object_updated_props', $plugin_public, 'woocommerce_customer_object_updated_props_birthday', 20, 2 );
+		$this->loader->add_action( 'woocommerce_checkout_update_order_meta', $plugin_public, 'checkout_update_order_meta_birthdate', 20, 2 );
+		$this->loader->add_action( 'woocommerce_customer_object_updated_props', $plugin_public, 'woocommerce_customer_object_updated_props_birthdate', 20, 2 );
 	}
 
 	/**

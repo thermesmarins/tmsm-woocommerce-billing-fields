@@ -77,14 +77,14 @@ class Tmsm_Woocommerce_Billing_Fields_Admin {
 	}
 
 	/**
-	 * Add birthday option to checkout tab
+	 * Add birthdate option to checkout tab
 	 *
 	 * @param $settings
 	 * @param $current_section
 	 *
 	 * @return array
 	 */
-	function woocommerce_get_settings_checkout_birthdaytitle( $settings, $current_section ) {
+	function woocommerce_get_settings_checkout_birthdatetitle( $settings, $current_section ) {
 
 		$new_settings = array(
 
@@ -98,8 +98,8 @@ class Tmsm_Woocommerce_Billing_Fields_Admin {
 				'autoload'      => false,
 			),
 			array(
-				'desc'          => __( 'Birthday field', 'tmsm-woocommerce-billing-fields' ),
-				'id'            => 'tmsm_woocommerce_billing_fields_birthday',
+				'desc'          => __( 'Birthdate field', 'tmsm-woocommerce-billing-fields' ),
+				'id'            => 'tmsm_woocommerce_billing_fields_birthdate',
 				'default'       => 'no',
 				'type'          => 'checkbox',
 				'checkboxgroup' => 'end',

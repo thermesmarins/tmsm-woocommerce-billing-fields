@@ -1,3 +1,6 @@
+### 1.0.4: October 31st, 2018
+* Renamed birthday into birthdate
+
 ### 1.0.3: October 30th, 2018
 * Display birthday field only on checkout page
 * Update translations

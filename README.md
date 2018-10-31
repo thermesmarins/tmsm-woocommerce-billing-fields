@@ -8,7 +8,7 @@ Features
 
 * Adds checkout billing fields (optional, settings in "Checkout" admin page)
     * title field
-    * birthday field (with mask mm/dd/yyyy)
+    * birthdate field (with mask mm/dd/yyyy)
 * Sync user data to Mailchimp (using Mailchimp for WooCommerce plugin) with following merge tags:
     * title as CIV
     * firstname as PRENOM
