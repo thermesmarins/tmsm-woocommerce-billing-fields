@@ -182,6 +182,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 		return $fields;
 	}
 
+
 	/**
 	 * Add birthdate fields to checkout page
 	 *
@@ -211,19 +212,37 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 		return $fields;
 	}
 
-/**
- * Reorder fields by priority
- *
- * @param $fields
- *
- * @return mixed
- */
-function reorder_fields($fields) {
-	uasort($fields['billing'], function($a, $b) {
-		return $a['priority'] <=> $b['priority'];
-	});
-	return $fields;
-}
+
+	/**
+	 * Remove placeholder from email validation field
+	 *
+	 * @param array $fields
+	 *
+	 * @return array
+	 */
+	function email_validation_placeholder( $fields ) {
+
+		if ( ! empty( $fields['billing_email-2'] ) && ! empty( $fields['billing_email-2']['placeholder'] ) ) {
+			$fields['billing_email-2']['placeholder'] = null;
+		}
+
+		return $fields;
+	}
+
+
+	/**
+	 * Reorder fields by priority
+	 *
+	 * @param $fields
+	 *
+	 * @return mixed
+	 */
+	function reorder_fields($fields) {
+		uasort($fields['billing'], function($a, $b) {
+			return $a['priority'] <=> $b['priority'];
+		});
+		return $fields;
+	}
 
 	/**
 	 * Update order meta fields: title

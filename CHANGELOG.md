@@ -1,3 +1,5 @@
+* Remove placeholder from email validation field
+
 ### 1.0.4: October 31st, 2018
 * Renamed birthday into birthdate
 
