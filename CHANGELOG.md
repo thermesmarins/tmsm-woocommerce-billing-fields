@@ -1,3 +1,4 @@
+### 1.0.5: May 9th, 2019
 * Remove placeholder from email validation field
 
 ### 1.0.4: October 31st, 2018
