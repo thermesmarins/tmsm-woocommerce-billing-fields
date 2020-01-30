@@ -279,7 +279,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	}
 
 	/**
-	 * Mailchimp sync user merge tags: PRENOM, NOM, CIV, DDN
+	 * Mailchimp sync user merge tags: FNAME, LNAME, CIV, BIRTHDATE, BIRTHDAY
 	 *
 	 * @param array $merge_vars
 	 * @param WP_User $user
@@ -289,10 +289,10 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	function mailchimp_sync_user_mergetags($merge_vars, $user){
 
 		// Firstname & Lastname
-		$merge_vars['PRENOM'] = ( trim( get_user_meta( $user->ID, 'billing_first_name', true )) ? trim( get_user_meta( $user->ID, 'billing_first_name',
-			true ) ) : trim( $user->first_name ) );
-		$merge_vars['NOM']    = ( trim( get_user_meta( $user->ID, 'billing_last_name', true )) ? trim( get_user_meta( $user->ID, 'billing_last_name',
-			true ) ) : trim( $user->last_name ) );
+		$merge_vars['PRENOM'] = ( trim( get_user_meta( $user->ID, 'billing_first_name', true )) ? trim( get_user_meta( $user->ID, 'billing_first_name', true ) ) : trim( $user->first_name ) );
+		$merge_vars['NOM']    = ( trim( get_user_meta( $user->ID, 'billing_last_name', true )) ? trim( get_user_meta( $user->ID, 'billing_last_name', true ) ) : trim( $user->last_name ) );
+		$merge_vars['FNAME'] = ( trim( get_user_meta( $user->ID, 'billing_first_name', true )) ? trim( get_user_meta( $user->ID, 'billing_first_name', true ) ) : trim( $user->first_name ) );
+		$merge_vars['LNAME']    = ( trim( get_user_meta( $user->ID, 'billing_last_name', true )) ? trim( get_user_meta( $user->ID, 'billing_last_name', true ) ) : trim( $user->last_name ) );
 
 		// Title
 		if(self::checkout_title_field_is_enabled()){
@@ -305,7 +305,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 			}
 		}
 
-		// Birthdate
+		// Birthdate & Birthday
 		if(self::checkout_birthdate_field_is_enabled()){
 			$birthdatevalue = trim( get_user_meta( $user->ID, 'billing_birthdate', true ));
 			if ( ! empty( $birthdatevalue ) ) {
@@ -313,6 +313,8 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 					sanitize_text_field( $birthdatevalue ) );
 				if ( $objdate instanceof DateTime ) {
 					$merge_vars['DDN'] = $objdate->format( 'm/d' ); // Fixed format by Mailchimp
+					$merge_vars['BIRTHDAY'] = $objdate->format( 'm/d' ); // Fixed format by Mailchimp
+					$merge_vars['BIRTHDATE'] = $objdate->format( 'm/d/y' ); // Fixed format by Mailchimp
 				}
 			}
 		}

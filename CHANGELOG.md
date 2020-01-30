@@ -1,3 +1,6 @@
+* Edited MailChimp merge tags to default names: FNAME, LNAME
+* Added MailChimp merge tags: BIRTHDAY, BIRTHDATE
+
 ### 1.0.5: May 9th, 2019
 * Remove placeholder from email validation field
 
