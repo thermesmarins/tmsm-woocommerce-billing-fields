@@ -1,3 +1,4 @@
+### 1.0.6: January 30th, 2020
 * Edited MailChimp merge tags to default names: FNAME, LNAME
 * Added MailChimp merge tags: BIRTHDAY, BIRTHDATE
 
