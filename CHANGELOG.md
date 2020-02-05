@@ -1,3 +1,4 @@
+### 1.0.7: January 30th, 2020
 * Added MailChimp merge tags: SOURCE
 
 ### 1.0.6: January 30th, 2020
