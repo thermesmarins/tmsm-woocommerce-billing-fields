@@ -11,7 +11,9 @@ Features
     * birthdate field (with mask mm/dd/yyyy)
 * Sync user data to Mailchimp (using Mailchimp for WooCommerce plugin) with following merge tags:
     * title as CIV
-    * firstname as PRENOM
-    * lastname as NOM
-    * birthday as DDN
+    * firstname as FNAME
+    * lastname as LNAME
+    * birthday as BIRTHDAY
+    * birthdate as BIRTHDATE
+    * signup source as SOURCE
 * Tested up to WooCommerce 3.4

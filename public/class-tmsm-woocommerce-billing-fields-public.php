@@ -279,7 +279,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	}
 
 	/**
-	 * Mailchimp sync user merge tags: FNAME, LNAME, CIV, BIRTHDATE, BIRTHDAY
+	 * Mailchimp sync user merge tags: FNAME, LNAME, CIV, BIRTHDATE, BIRTHDAY, SOURCE
 	 *
 	 * @param array $merge_vars
 	 * @param WP_User $user
@@ -287,6 +287,9 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @return array
 	 */
 	function mailchimp_sync_user_mergetags($merge_vars, $user){
+
+		//Source
+		$merge_vars['SOURCE'] = $this->plugin_name;
 
 		// Firstname & Lastname
 		$merge_vars['PRENOM'] = ( trim( get_user_meta( $user->ID, 'billing_first_name', true )) ? trim( get_user_meta( $user->ID, 'billing_first_name', true ) ) : trim( $user->first_name ) );
