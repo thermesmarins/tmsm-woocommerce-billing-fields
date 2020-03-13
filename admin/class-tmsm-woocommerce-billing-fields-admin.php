@@ -77,15 +77,58 @@ class Tmsm_Woocommerce_Billing_Fields_Admin {
 	}
 
 	/**
-	 * Add birthdate option to checkout tab
+	 * Sanitize field display.
 	 *
-	 * @param $settings
-	 * @param $current_section
+	 * @param string $value '', 'subcategories', or 'both'.
+	 * @return string
+	 */
+	public function sanitize_checkout_field_display( $value ) {
+		$options = array( 'hidden', 'optional', 'required' );
+		return in_array( $value, $options, true ) ? $value : '';
+	}
+
+	/**
+	 * Add birthdate option to customizer
+	 *
+	 * @param WP_Customize_Manager $wp_customize
 	 *
 	 * @return array
 	 */
-	function woocommerce_get_settings_checkout_birthdatetitle( $settings, $current_section ) {
+	function billing_fields_sections( $wp_customize ) {
 
+		// Checkout field controls.
+		$fields = array(
+			'title'   => __( 'Billing Title', 'woocommerce' ),
+			'birthdate' => __( 'Birth Date', 'woocommerce' ),
+		);
+		foreach ( $fields as $field => $label ) {
+			$wp_customize->add_setting(
+				'tmsm_woocommerce_billing_fields_' . $field,
+				array(
+					'default'           => 'optional',
+					'type'              => 'option',
+					'capability'        => 'manage_woocommerce',
+					'sanitize_callback' => array( $this, 'sanitize_checkout_field_display' ),
+				)
+			);
+			$wp_customize->add_control(
+				'woocommerce_checkout_' . $field . '_field',
+				array(
+					/* Translators: %s field name. */
+					'label'    => sprintf( __( '%s field', 'woocommerce' ), $label ),
+					'section'  => 'woocommerce_checkout',
+					'settings' => 'tmsm_woocommerce_billing_fields_' . $field,
+					'type'     => 'select',
+					'choices'  => array(
+						'hidden'   => __( 'Hidden', 'woocommerce' ),
+						'optional' => __( 'Optional', 'woocommerce' ),
+						'required' => __( 'Required', 'woocommerce' ),
+					),
+				)
+			);
+		}
+
+		/*
 		$new_settings = array(
 
 			array(
@@ -118,6 +161,6 @@ class Tmsm_Woocommerce_Billing_Fields_Admin {
 		}
 
 		return $settings;
-
+		*/
 	}
 }

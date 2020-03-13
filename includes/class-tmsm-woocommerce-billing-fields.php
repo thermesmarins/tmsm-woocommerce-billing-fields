@@ -157,12 +157,9 @@ class Tmsm_Woocommerce_Billing_Fields {
 		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// For WooCommerce 3.6+
+		$this->loader->add_action( 'customize_register', $plugin_admin, 'billing_fields_sections' );
 
-		// For WooCommerce 3.3
-		$this->loader->add_filter( 'woocommerce_get_settings_checkout', $plugin_admin, 'woocommerce_get_settings_checkout_birthdatetitle', 10, 2 );
-
-		// For WooCommerce 3.4
-		$this->loader->add_filter( 'woocommerce_get_settings_advanced', $plugin_admin, 'woocommerce_get_settings_checkout_birthdatetitle', 10, 2 );
 
 	}
 
