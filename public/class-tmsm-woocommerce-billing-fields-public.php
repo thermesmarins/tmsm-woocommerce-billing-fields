@@ -164,11 +164,11 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 */
 	function billing_fields_title( $fields ) {
 
-		if(self::checkout_title_field_is_enabled()){
+		if ( get_option( 'tmsm_woocommerce_billing_fields_title', 'hidden' ) != 'hidden' ) {
 			$new_fields['billing_title']  = array(
 				'type'            => 'radio',
 				'label'          => _x('Title', 'honorific title label', 'tmsm-woocommerce-billing-fields'),
-				'required'       => true,
+				'required' => get_option( 'tmsm_woocommerce_billing_fields_title', 'hidden' ) == 'required',
 				'class'          => ['billing-title'],
 				'label_class'          => ['control-label'],
 				'input_class'          => [''],
@@ -191,13 +191,14 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @return mixed
 	 */
 	function billing_fields_birthdate( $fields ) {
-		if(self::checkout_birthdate_field_is_enabled() && is_checkout()){
+
+		if ( get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'hidden' ) != 'hidden' && is_checkout() ) {
 			$new_fields['billing_birthdate'] = array(
 				'type'        => 'text',
 				'label'       => _x( 'Date of birth', 'birthdate label', 'tmsm-woocommerce-billing-fields' ),
 				//'description'          => _x('Day', 'birthdate day', 'tmsm-woocommerce-billing-fields'),
 				'placeholder' => _x( 'mm/dd/yyyy', 'birthdate placeholder', 'tmsm-woocommerce-billing-fields' ),
-				'required'    => false,
+				'required' => get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'hidden' ) == 'required',
 				'class'       => [ 'billing-birthdate' ],
 				'label_class' => [ 'control-label' ],
 				'input_class' => [ '' ],
@@ -353,7 +354,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @return bool
 	 */
 	private function checkout_title_field_is_enabled(){
-		return get_option( 'tmsm_woocommerce_billing_fields_title', 'no' ) == 'yes';
+		return get_option( 'tmsm_woocommerce_billing_fields_title', 'hidden' ) != 'hidden';
 	}
 
 	/**
@@ -364,7 +365,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @return bool
 	 */
 	private function checkout_birthdate_field_is_enabled(){
-		return get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'no' ) == 'yes';
+		return get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'hidden' ) != 'hidden';
 	}
 
 }

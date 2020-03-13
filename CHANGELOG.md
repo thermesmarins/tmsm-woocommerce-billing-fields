@@ -1,3 +1,6 @@
+### 1.0.8: March 13th, 2020
+* Rework settings fields compatibility for WooCommerce 3.6+
+
 ### 1.0.7: January 30th, 2020
 * Added MailChimp merge tags: SOURCE
 
