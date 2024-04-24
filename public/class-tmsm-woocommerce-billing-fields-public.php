@@ -20,7 +20,11 @@
  * @subpackage Tmsm_Woocommerce_Billing_Fields/public
  * @author     Nicolas Mollet <nico.mollet@gmail.com>
  */
-class Tmsm_Woocommerce_Billing_Fields_Public {
+
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
+class Tmsm_Woocommerce_Billing_Fields_Public
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +51,11 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,10 +63,10 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tmsm-woocommerce-billing-fields-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/tmsm-woocommerce-billing-fields-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -70,17 +74,18 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
-		if(self::checkout_birthdate_field_is_enabled()){
-			wp_enqueue_script( 'jquery-mask', plugin_dir_url( __FILE__ ) . 'js/jquery.mask.min.js', array( 'jquery' ), null, true );
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-woocommerce-billing-fields-public.js', array( 'jquery', 'jquery-mask' ), null, true );
+		if (self::checkout_birthdate_field_is_enabled()) {
+			wp_enqueue_script('jquery-mask', plugin_dir_url(__FILE__) . 'js/jquery.mask.min.js', array('jquery'), null, true);
+			wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/tmsm-woocommerce-billing-fields-public.js', array('jquery', 'jquery-mask'), null, true);
 
 			// Localize the script with new data
 			$translation_array = array(
-				'birthdateformat' => _x( 'mm/dd/yyyy', 'birthdate date format', 'tmsm-woocommerce-billing-fields' ),
+				'birthdateformat' => _x('mm/dd/yyyy', 'birthdate date format', 'tmsm-woocommerce-billing-fields'),
 			);
-			wp_localize_script( $this->plugin_name, 'tmsm_woocommerce_billing_fields_i18n', $translation_array );
+			wp_localize_script($this->plugin_name, 'tmsm_woocommerce_billing_fields_i18n', $translation_array);
 		}
 	}
 
@@ -93,9 +98,10 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return null|string
 	 */
-	function checkout_default_values_user( $input, $key ) {
+	function checkout_default_values_user($input, $key)
+	{
 		global $current_user;
-		switch ( $key ) :
+		switch ($key):
 			case 'billing_first_name':
 			case 'shipping_first_name':
 				return $current_user->first_name;
@@ -109,7 +115,6 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 				return $current_user->user_email;
 				break;
 		endswitch;
-
 	}
 
 	/**
@@ -122,22 +127,24 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return null|string
 	 */
-	function checkout_default_values_birthdate( $input, $key ) {
+	function checkout_default_values_birthdate($input, $key)
+	{
 		global $current_user;
 
-		switch ( $key ) :
+		switch ($key):
 			case 'billing_birthdate':
-				if( method_exists('DateTime', 'createFromFormat') && !empty($current_user->ID)){
-					$objdate = DateTime::createFromFormat( _x( 'Y-m-d', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields' ),
-						get_user_meta($current_user->ID, 'billing_birthdate', true) );
-					if( $objdate instanceof DateTime ){
-						return $objdate->format(_x( 'm/d/Y', 'birthdate date format', 'tmsm-woocommerce-billing-fields' ));
+				if (method_exists('DateTime', 'createFromFormat') && !empty($current_user->ID)) {
+					$objdate = DateTime::createFromFormat(
+						_x('Y-m-d', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields'),
+						get_user_meta($current_user->ID, 'billing_birthdate', true)
+					);
+					if ($objdate instanceof DateTime) {
+						return $objdate->format(_x('m/d/Y', 'birthdate date format', 'tmsm-woocommerce-billing-fields'));
 					}
 				}
 				return '';
 				break;
 		endswitch;
-
 	}
 
 	/**
@@ -145,11 +152,12 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return mixed
 	 */
-	public static function billing_title_options(){
+	public static function billing_title_options()
+	{
 
 		$options = array(
-			'2' => _x('Ms', 'honorific title', 'tmsm-woocommerce-billing-fields' ),
-			'1' => _x('Mr', 'honorific title', 'tmsm-woocommerce-billing-fields' ),
+			'2' => _x('Ms', 'honorific title', 'tmsm-woocommerce-billing-fields'),
+			'1' => _x('Mr', 'honorific title', 'tmsm-woocommerce-billing-fields'),
 		);
 
 		return $options;
@@ -162,13 +170,14 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return mixed
 	 */
-	function billing_fields_title( $fields ) {
+	function billing_fields_title($fields)
+	{
 
-		if ( get_option( 'tmsm_woocommerce_billing_fields_title', 'hidden' ) != 'hidden' ) {
+		if (get_option('tmsm_woocommerce_billing_fields_title', 'hidden') != 'hidden') {
 			$new_fields['billing_title']  = array(
 				'type'            => 'radio',
 				'label'          => _x('Title', 'honorific title label', 'tmsm-woocommerce-billing-fields'),
-				'required' => get_option( 'tmsm_woocommerce_billing_fields_title', 'hidden' ) == 'required',
+				'required' => get_option('tmsm_woocommerce_billing_fields_title', 'hidden') == 'required',
 				'class'          => ['billing-title'],
 				'label_class'          => ['control-label'],
 				'input_class'          => [''],
@@ -176,7 +185,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 				//'custom_attributes'          => ['style' => 'display:inline-block'],
 				'options'     => self::billing_title_options()
 			);
-			$fields = array_merge($fields, $new_fields );
+			$fields = array_merge($fields, $new_fields);
 		}
 
 		return $fields;
@@ -190,24 +199,25 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return mixed
 	 */
-	function billing_fields_birthdate( $fields ) {
+	function billing_fields_birthdate($fields)
+	{
 
-		if ( get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'hidden' ) != 'hidden' && is_checkout() ) {
+		if (get_option('tmsm_woocommerce_billing_fields_birthdate', 'hidden') != 'hidden' && is_checkout()) {
 			$new_fields['billing_birthdate'] = array(
 				'type'        => 'text',
-				'label'       => _x( 'Date of birth', 'birthdate label', 'tmsm-woocommerce-billing-fields' ),
+				'label'       => _x('Date of birth', 'birthdate label', 'tmsm-woocommerce-billing-fields'),
 				//'description'          => _x('Day', 'birthdate day', 'tmsm-woocommerce-billing-fields'),
-				'placeholder' => _x( 'mm/dd/yyyy', 'birthdate placeholder', 'tmsm-woocommerce-billing-fields' ),
-				'required' => get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'hidden' ) == 'required',
-				'class'       => [ 'billing-birthdate' ],
-				'label_class' => [ 'control-label' ],
-				'input_class' => [ '' ],
+				'placeholder' => _x('mm/dd/yyyy', 'birthdate placeholder', 'tmsm-woocommerce-billing-fields'),
+				'required' => get_option('tmsm_woocommerce_billing_fields_birthdate', 'hidden') == 'required',
+				'class'       => ['billing-birthdate'],
+				'label_class' => ['control-label'],
+				'input_class' => [''],
 				'priority'    => 2000,
 				'autocomplete'    => 'bday',
 				//'custom_attributes'          => ['style' => 'display:inline-block'],
 			);
 
-			$fields = array_merge($fields, $new_fields );
+			$fields = array_merge($fields, $new_fields);
 		}
 
 		return $fields;
@@ -221,9 +231,10 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return array
 	 */
-	function email_validation_placeholder( $fields ) {
+	function email_validation_placeholder($fields)
+	{
 
-		if ( ! empty( $fields['billing_email-2'] ) && ! empty( $fields['billing_email-2']['placeholder'] ) ) {
+		if (!empty($fields['billing_email-2']) && !empty($fields['billing_email-2']['placeholder'])) {
 			$fields['billing_email-2']['placeholder'] = null;
 		}
 
@@ -238,8 +249,9 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return mixed
 	 */
-	function reorder_fields($fields) {
-		uasort($fields['billing'], function($a, $b) {
+	function reorder_fields($fields)
+	{
+		uasort($fields['billing'], function ($a, $b) {
 			return $a['priority'] <=> $b['priority'];
 		});
 		return $fields;
@@ -251,12 +263,19 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @param $order_id integer
 	 * @param $posted array
 	 */
-	function checkout_update_order_meta_title( $order_id, $posted ){
-
-		if( isset( $posted['billing_title'] ) ) {
-			update_post_meta( $order_id, '_billing_title', sanitize_text_field( $posted['billing_title'] ) );
+	function checkout_update_order_meta_title($order_id, $posted)
+	{
+		if (isset($posted['billing_title'])) {
+			if (OrderUtil::custom_orders_table_usage_is_enabled()) 
+			{
+				$order = wc_get_order($order_id);
+				$order->update_meta_data('_billing_title', sanitize_text_field($posted['billing_title']));
+			} else 
+			{
+				// Traditional CPT-based orders are in use.
+					update_post_meta($order_id, '_billing_title', sanitize_text_field($posted['billing_title']));
+			}
 		}
-
 	}
 
 	/**
@@ -265,18 +284,28 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @param $order_id integer
 	 * @param $posted array
 	 */
-	function checkout_update_order_meta_birthdate( $order_id, $posted ){
+	function checkout_update_order_meta_birthdate($order_id, $posted)
+	{
 
-		if( isset( $posted['billing_birthdate'] ) ) {
-			if( method_exists('DateTime', 'createFromFormat') ){
-				$objdate = DateTime::createFromFormat( _x( 'm/d/Y', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields' ),
-					sanitize_text_field( $posted['billing_birthdate'] ) );
-				if( $objdate instanceof DateTime ){
-					update_post_meta( $order_id, '_billing_birthdate', sanitize_text_field( $objdate->format('Y-m-d') ) );
+		if (isset($posted['billing_birthdate'])) {
+			if (method_exists('DateTime', 'createFromFormat')) {
+				$objdate = DateTime::createFromFormat(
+					_x('m/d/Y', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields'),
+					sanitize_text_field($posted['billing_birthdate'])
+				);
+				if ($objdate instanceof DateTime) {
+
+					if (OrderUtil::custom_orders_table_usage_is_enabled()) { 
+						
+						$order = wc_get_order($order_id);
+						$order->update_meta_data('_billing_birthdate', sanitize_text_field($objdate->format('Y-m-d')));
+						
+					} else {
+						update_post_meta($order_id, '_billing_birthdate', sanitize_text_field($objdate->format('Y-m-d')));
+					}
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -287,38 +316,41 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return array
 	 */
-	function mailchimp_sync_user_mergetags($merge_vars, $user){
+	function mailchimp_sync_user_mergetags($merge_vars, $user)
+	{
 
 		//Source
 		$merge_vars['SOURCE'] = $this->plugin_name;
 
 		// Firstname & Lastname
-		$merge_vars['PRENOM'] = ( trim( get_user_meta( $user->ID, 'billing_first_name', true )) ? trim( get_user_meta( $user->ID, 'billing_first_name', true ) ) : trim( $user->first_name ) );
-		$merge_vars['NOM']    = ( trim( get_user_meta( $user->ID, 'billing_last_name', true )) ? trim( get_user_meta( $user->ID, 'billing_last_name', true ) ) : trim( $user->last_name ) );
-		$merge_vars['FNAME'] = ( trim( get_user_meta( $user->ID, 'billing_first_name', true )) ? trim( get_user_meta( $user->ID, 'billing_first_name', true ) ) : trim( $user->first_name ) );
-		$merge_vars['LNAME']    = ( trim( get_user_meta( $user->ID, 'billing_last_name', true )) ? trim( get_user_meta( $user->ID, 'billing_last_name', true ) ) : trim( $user->last_name ) );
+		$merge_vars['PRENOM'] = (trim(get_user_meta($user->ID, 'billing_first_name', true)) ? trim(get_user_meta($user->ID, 'billing_first_name', true)) : trim($user->first_name));
+		$merge_vars['NOM']    = (trim(get_user_meta($user->ID, 'billing_last_name', true)) ? trim(get_user_meta($user->ID, 'billing_last_name', true)) : trim($user->last_name));
+		$merge_vars['FNAME'] = (trim(get_user_meta($user->ID, 'billing_first_name', true)) ? trim(get_user_meta($user->ID, 'billing_first_name', true)) : trim($user->first_name));
+		$merge_vars['LNAME']    = (trim(get_user_meta($user->ID, 'billing_last_name', true)) ? trim(get_user_meta($user->ID, 'billing_last_name', true)) : trim($user->last_name));
 
 		// Title
-		if(self::checkout_title_field_is_enabled()){
+		if (self::checkout_title_field_is_enabled()) {
 			$billing_title_value = get_user_meta($user->ID, 'billing_title', true);
 			$billing_title_options = self::billing_title_options();
 
 
-			if($billing_title_value && isset($billing_title_options[$billing_title_value])){
+			if ($billing_title_value && isset($billing_title_options[$billing_title_value])) {
 				$merge_vars['CIV'] = @$billing_title_options[$billing_title_value];
 			}
 		}
 
 		// Birthdate & Birthday
-		if(self::checkout_birthdate_field_is_enabled()){
-			$birthdatevalue = trim( get_user_meta( $user->ID, 'billing_birthdate', true ));
-			if ( ! empty( $birthdatevalue ) ) {
-				$objdate = DateTime::createFromFormat( _x( 'Y-m-d', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields' ),
-					sanitize_text_field( $birthdatevalue ) );
-				if ( $objdate instanceof DateTime ) {
-					$merge_vars['DDN'] = $objdate->format( 'm/d' ); // Fixed format by Mailchimp
-					$merge_vars['BIRTHDAY'] = $objdate->format( 'm/d' ); // Fixed format by Mailchimp
-					$merge_vars['BIRTHDATE'] = $objdate->format( 'm/d/y' ); // Fixed format by Mailchimp
+		if (self::checkout_birthdate_field_is_enabled()) {
+			$birthdatevalue = trim(get_user_meta($user->ID, 'billing_birthdate', true));
+			if (!empty($birthdatevalue)) {
+				$objdate = DateTime::createFromFormat(
+					_x('Y-m-d', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields'),
+					sanitize_text_field($birthdatevalue)
+				);
+				if ($objdate instanceof DateTime) {
+					$merge_vars['DDN'] = $objdate->format('m/d'); // Fixed format by Mailchimp
+					$merge_vars['BIRTHDAY'] = $objdate->format('m/d'); // Fixed format by Mailchimp
+					$merge_vars['BIRTHDATE'] = $objdate->format('m/d/y'); // Fixed format by Mailchimp
 				}
 			}
 		}
@@ -332,18 +364,20 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 * @param WC_Customer $customer
 	 * @param $updated_props
 	 */
-	function woocommerce_customer_object_updated_props_birthdate($customer, $updated_props){
+	function woocommerce_customer_object_updated_props_birthdate($customer, $updated_props)
+	{
 
-		if(self::checkout_birthdate_field_is_enabled()){
-			if( method_exists('DateTime', 'createFromFormat') && !empty($customer->get_meta('billing_birthdate', true))){
-				$objdate = DateTime::createFromFormat( _x( 'm/d/Y', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields' ),
-					sanitize_text_field( $customer->get_meta('billing_birthdate', true) ) );
-				if( $objdate instanceof DateTime ){
-					$customer->update_meta_data('billing_birthdate', sanitize_text_field( $objdate->format('Y-m-d') ));
+		if (self::checkout_birthdate_field_is_enabled()) {
+			if (method_exists('DateTime', 'createFromFormat') && !empty($customer->get_meta('billing_birthdate', true))) {
+				$objdate = DateTime::createFromFormat(
+					_x('m/d/Y', 'birthdate date format conversion', 'tmsm-woocommerce-billing-fields'),
+					sanitize_text_field($customer->get_meta('billing_birthdate', true))
+				);
+				if ($objdate instanceof DateTime) {
+					$customer->update_meta_data('billing_birthdate', sanitize_text_field($objdate->format('Y-m-d')));
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -353,8 +387,9 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return bool
 	 */
-	private function checkout_title_field_is_enabled(){
-		return get_option( 'tmsm_woocommerce_billing_fields_title', 'hidden' ) != 'hidden';
+	private function checkout_title_field_is_enabled()
+	{
+		return get_option('tmsm_woocommerce_billing_fields_title', 'hidden') != 'hidden';
 	}
 
 	/**
@@ -364,8 +399,8 @@ class Tmsm_Woocommerce_Billing_Fields_Public {
 	 *
 	 * @return bool
 	 */
-	private function checkout_birthdate_field_is_enabled(){
-		return get_option( 'tmsm_woocommerce_billing_fields_birthdate', 'hidden' ) != 'hidden';
+	private function checkout_birthdate_field_is_enabled()
+	{
+		return get_option('tmsm_woocommerce_billing_fields_birthdate', 'hidden') != 'hidden';
 	}
-
 }
