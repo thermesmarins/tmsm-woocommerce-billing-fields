@@ -1,3 +1,6 @@
+### 1.1 April 25th, 2024
+* Add compatibility with Woocommerce HPOS storage
+  
 ### 1.0.8: March 13th, 2020
 * Rework settings fields compatibility for WooCommerce 3.6+
 

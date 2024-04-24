@@ -16,4 +16,5 @@ Features
     * birthday as BIRTHDAY
     * birthdate as BIRTHDATE
     * signup source as SOURCE
-* Tested up to WooCommerce 3.4
+* Tested up to WooCommerce  8.7.0
+* Compatible with HPOS woocommerce 
