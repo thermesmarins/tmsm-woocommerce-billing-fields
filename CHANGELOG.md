@@ -1,4 +1,4 @@
-### 1.2 October 31st, 2024
+### 1.3 October 31st, 2024
 * Fix billing birthdate format issue for HPOS 
 
 ### 1.1 April 25th, 2024

@@ -270,8 +270,7 @@ class Tmsm_Woocommerce_Billing_Fields_Public
 			{
 				$order = wc_get_order($order_id);
 				$order->update_meta_data('_billing_title', sanitize_text_field($posted['billing_title']));
-				$order->save_meta_data();
-				$order->save();	
+				
 			} else 
 			{
 				// Traditional CPT-based orders are in use.
@@ -301,6 +300,8 @@ class Tmsm_Woocommerce_Billing_Fields_Public
 						
 						$order = wc_get_order($order_id);
 						$order->update_meta_data('_billing_birthdate', sanitize_text_field($objdate->format('Y-m-d')));
+						$order->save_meta_data();
+						$order->save();	
 						
 					} else {
 						update_post_meta($order_id, '_billing_birthdate', sanitize_text_field($objdate->format('Y-m-d')));
